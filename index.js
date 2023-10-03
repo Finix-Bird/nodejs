@@ -1,27 +1,48 @@
 const http=require('http')
-// const url=require('url')
+const path=require('path')
+const fs=require('fs')
 
-// const name="Karthi"
-// http.createServer((req,res)=>{
-//     res.end("<h1>Welcome "+name+"</h1>")
-// }).listen(4000)
+// console.log(path.basename('one.js'))
+// console.log(path.extname('one.js'))
+// console.log(__dirname)
+// console.log(__filename)
+
+// console.log(path.extname(__filename))
+// console.log(path.parse(__filename).name)
+
+
+// console.log(path.extname(__filename))
+// console.log(path.join('test','test.js'))
+// fs.mkdir('test',(err)=>{
+//     if(err){throw err}
+//     console.log('Dir created')
+// })
+
+//file creation
+
+
+
+// fs.writeFile(path.join(`${__dirname}/test/hello.js`),"Hello World",(err)=>{
+//     if(err){throw err}
+//     console.log('File created')
+// })
 
 const app=http.createServer((req,res)=>{
-    // res.write(req.url)
-    if(req.url==="/")
-    {
-        res.write("<h1>HOME</h1>")
-    }
-    if(req.url==="/about")
-    {
-        res.write("<h1>ABOUT</h1>")
-    }
-    if(req.url==="/product")
-    {
-        res.write("<h1>Our Services</h1>")
-    }
-    res.end()
+    fs.readFile(path.join(`${__dirname}/calc.js`),'utf8',(err,data)=>{
+        // console.log('Hello')
+        res.write(data)
+        res.end()
+    })
 })
 
+app.listen(2500,()=>{console.log('server created on 2500')})
 
-app.listen(2500,()=>{console.log('Server started on 2500')})
+
+
+
+
+
+
+
+
+
